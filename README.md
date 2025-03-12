@@ -2,18 +2,36 @@
 
 Este projeto é uma API RESTful para gerenciar informações de uma escola, incluindo alunos, professores, cursos e matrículas. A API permite realizar operações CRUD (Criar, Ler, Atualizar e Excluir) em diversas entidades da escola.
 
-## Tecnologias
+## Tecnologias Utilizadas
 
 -   **Laravel**: Framework PHP utilizado para desenvolver a API.
 -   **MySQL/MariaDB**: Banco de dados relacional utilizado para armazenar as informações.
 -   **Laravel Sanctum**: Sistema de autenticação simples para APIs.
 -   **Eloquent ORM**: Para interação com o banco de dados de forma simples e eficiente.
+-   **Docker**: Utilizado para criar um ambiente de desenvolvimento consistente e fácil de configurar.
 
-## Requisitos
+## Docker
 
--   PHP 7.4 ou superior
--   Composer
--   MySQL/MariaDB
+Este projeto utiliza o Docker para facilitar o processo de desenvolvimento, fornecendo um ambiente isolado para o Laravel, MySQL, Redis, Meilisearch, e outros serviços. O Docker garante que todos os desenvolvedores trabalhem com as mesmas versões de dependências e configurações, independentemente do sistema operacional.
+
+### Serviços
+
+O `docker-compose.yml` define os seguintes serviços:
+
+-   **laravel.test**: O ambiente de execução do Laravel.
+-   **mysql**: Servidor de banco de dados MySQL.
+-   **redis**: Servidor Redis para cache e filas.
+-   **meilisearch**: Serviço de busca.
+-   **mailpit**: Ferramenta de teste de e-mail.
+-   **selenium**: Serviço para testes automatizados com Selenium.
+
+### Comandos Docker
+
+Os seguintes comandos podem ser utilizados para interagir com o Docker:
+
+-   `docker compose up -d`: Inicia os serviços.
+-   `docker compose down`: Para os serviços.
+-   `docker compose restart`: Reinicia os serviços.
 
 ## Instalação
 
