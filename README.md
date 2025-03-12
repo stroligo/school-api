@@ -1,66 +1,123 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# School API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este projeto é uma API RESTful para gerenciar informações de uma escola, incluindo alunos, professores, cursos e matrículas. A API permite realizar operações CRUD (Criar, Ler, Atualizar e Excluir) em diversas entidades da escola.
 
-## About Laravel
+## Tecnologias
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   **Laravel**: Framework PHP utilizado para desenvolver a API.
+-   **MySQL/MariaDB**: Banco de dados relacional utilizado para armazenar as informações.
+-   **Laravel Sanctum**: Sistema de autenticação simples para APIs.
+-   **Eloquent ORM**: Para interação com o banco de dados de forma simples e eficiente.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requisitos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   PHP 7.4 ou superior
+-   Composer
+-   MySQL/MariaDB
 
-## Learning Laravel
+## Instalação
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Clone este repositório: git clone https://github.com/usuario/school-api.git
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. Instale as dependências: composer install
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. Configure o arquivo `.env` com as suas configurações de banco de dados.
 
-## Laravel Sponsors
+4. Execute o comando `php artisan migrate` para criar as tabelas no banco de dados.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+5. Execute o comando `php artisan db:seed` para popular o banco de dados com dados de exemplo.
 
-### Premium Partners
+6. Execute o comando `php artisan serve` para iniciar o servidor da API.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Rotas da API
 
-## Contributing
+A seguir, estão as rotas disponíveis no projeto. A API segue a arquitetura RESTful e possui os seguintes endpoints:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Cursos (Courses)
 
-## Code of Conduct
+-   **GET** `/api/courses`  
+    Lista todos os cursos.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+-   **POST** `/api/courses`  
+    Cria um novo curso.
 
-## Security Vulnerabilities
+-   **GET** `/api/courses/{course}`  
+    Exibe os detalhes de um curso específico.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+-   **PUT/PATCH** `/api/courses/{course}`  
+    Atualiza um curso específico.
 
-## License
+-   **DELETE** `/api/courses/{course}`  
+    Remove um curso específico.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Matrículas (Enrollments)
+
+-   **GET** `/api/enrollments`  
+    Lista todas as matrículas.
+
+-   **POST** `/api/enrollments`  
+    Cria uma nova matrícula.
+
+-   **GET** `/api/enrollments/student/{student_id}`  
+    Exibe todos os cursos em que um aluno está matriculado.
+
+-   **GET** `/api/enrollments/{enrollment}`  
+    Exibe os detalhes de uma matrícula específica.
+
+-   **PUT/PATCH** `/api/enrollments/{enrollment}`  
+    Atualiza uma matrícula específica.
+
+-   **DELETE** `/api/enrollments/{enrollment}`  
+    Remove uma matrícula específica.
+
+-   **DELETE** `/api/enrollments/{student_id}/{course_id}`  
+    Remove um aluno de um curso específico.
+
+### Alunos (Students)
+
+-   **GET** `/api/students`  
+    Lista todos os alunos.
+
+-   **POST** `/api/students`  
+    Cria um novo aluno.
+
+-   **GET** `/api/students/{student}`  
+    Exibe os detalhes de um aluno específico.
+
+-   **PUT/PATCH** `/api/students/{student}`  
+    Atualiza os dados de um aluno específico.
+
+-   **DELETE** `/api/students/{student}`  
+    Remove um aluno específico.
+
+### Professores (Teachers)
+
+-   **GET** `/api/teachers`  
+    Lista todos os professores.
+
+-   **POST** `/api/teachers`  
+    Cria um novo professor.
+
+-   **GET** `/api/teachers/{teacher}`  
+    Exibe os detalhes de um professor específico.
+
+-   **PUT/PATCH** `/api/teachers/{teacher}`  
+    Atualiza os dados de um professor específico.
+
+-   **DELETE** `/api/teachers/{teacher}`  
+    Remove um professor específico.
+
+### Autenticação
+
+-   **GET** `/sanctum/csrf-cookie`  
+    Retorna o token CSRF necessário para autenticação utilizando Laravel Sanctum.
+
+### Armazenamento
+
+-   **GET** `/storage/{path}`  
+    Serve arquivos armazenados.
+
+### Outros
+
+-   **GET** `/up`  
+    Retorna o status do servidor (geralmente utilizado para verificar se a aplicação está online).
